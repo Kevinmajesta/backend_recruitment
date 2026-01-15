@@ -1,5 +1,4 @@
 # Recruitment Management System API  
-**PT MSBU Backend Challenge**
 
 Backend API ini dibangun untuk sistem **Recruitment Management System** dengan fokus utama pada **Multi-Tenancy**, sehingga setiap perusahaan (tenant) memiliki isolasi data yang aman dan terpisah.
 
