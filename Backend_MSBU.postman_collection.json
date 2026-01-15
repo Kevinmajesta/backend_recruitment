@@ -1,0 +1,1034 @@
+{
+	"info": {
+		"_postman_id": "e40a90c8-e348-4f98-9d30-288aab79d5b9",
+		"name": "Backend_MSBU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33423852",
+		"_collection_link": "https://www.postman.com/lunar-resonance-148572/workspace/kevin-work/collection/33423852-e40a90c8-e348-4f98-9d30-288aab79d5b9?action=share&source=collection_link&creator=33423852"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"PT SIUUUUUUUUUUUUU\",\r\n    \"fullName\": \"Kevin\",\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123\",\r\n    \"phone\": \"08123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register [SUCCESS]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"PT Maju Jaya\",\r\n    \"fullName\": \"John Doe\",\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"phone\": \"08123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"message\": \"Company and Admin registered successfully\",\r\n    \"data\": {\r\n        \"userId\": \"c90d6875-db4b-4da2-835f-98a18eb7805c\",\r\n        \"companyId\": \"3dbadce8-9c19-42e3-aceb-fa66ef954524\",\r\n        \"role\": \"ADMIN\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Register [FAILED]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"PT Maju Jaya\",\r\n    \"fullName\": \"John Doe\",\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"phone\": \"08123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"success\": false,\r\n    \"errors\": [\r\n        {\r\n            \"type\": \"field\",\r\n            \"msg\": \"Email is invalid\",\r\n            \"path\": \"email\",\r\n            \"location\": \"body\"\r\n        },\r\n        {\r\n            \"type\": \"field\",\r\n            \"msg\": \"\\nInvalid `prisma.user.findUnique()` invocation in\\nD:\\\\belajar-express\\\\backend_recruitment\\\\utils\\\\validators\\\\auth.js:13:38\\n\\n  10 .isEmail()\\n  11 .withMessage(\\\"Email is invalid\\\")\\n  12 .custom(async (value) => {\\n→ 13   const user = await prisma.user.findUnique({\\n         where: {\\n           email: undefined,\\n       ?   id?: String,\\n       ?   AND?: UserWhereInput | UserWhereInput[],\\n       ?   OR?: UserWhereInput[],\\n       ?   NOT?: UserWhereInput | UserWhereInput[],\\n       ?   companyId?: UuidFilter | String,\\n       ?   password?: StringFilter | String,\\n       ?   fullName?: StringFilter | String,\\n       ?   role?: EnumRoleFilter | Role,\\n       ?   createdAt?: DateTimeFilter | DateTime,\\n       ?   updatedAt?: DateTimeFilter | DateTime,\\n       ?   company?: CompanyScalarRelationFilter | CompanyWhereInput,\\n       ?   positions?: PositionListRelationFilter\\n         }\\n       })\\n\\nArgument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.\",\r\n            \"path\": \"email\",\r\n            \"location\": \"body\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login [SUCCESS]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/ogin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"ogin"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"message\": \"Login successfully\",\r\n    \"data\": {\r\n        \"token\": \"{{vault:json-web-token}}\",\r\n        \"user\": {\r\n            \"id\": \"51f3a75d-6843-4b9a-88bc-348cae803b92\",\r\n            \"fullName\": \"Jane Smith\",\r\n            \"email\": \"recruiter@majujaya.com\",\r\n            \"role\": \"RECRUITER\",\r\n            \"companyId\": \"3dbadce8-9c19-42e3-aceb-fa66ef954524\"\r\n        }\r\n    }\r\n}"
+						},
+						{
+							"name": "Login [FAILED]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"success\": false,\r\n    \"message\": \"Invalid password\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Check User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check User [SUCCESS]",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"id\": \"51f3a75d-6843-4b9a-88bc-348cae803b92\",\r\n        \"email\": \"recruiter@majujaya.com\",\r\n        \"fullName\": \"Jane Smith\",\r\n        \"role\": \"RECRUITER\",\r\n        \"companyId\": \"3dbadce8-9c19-42e3-aceb-fa66ef954524\",\r\n        \"createdAt\": \"2026-01-15T06:49:38.499Z\",\r\n        \"updatedAt\": \"2026-01-15T06:49:38.499Z\",\r\n        \"company\": {\r\n            \"name\": \"PT SIUUUUUUUUUUUUU\"\r\n        }\r\n    }\r\n}"
+						},
+						{
+							"name": "Check User [INVALID TOKEN]",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"message\": \"Invalid token\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@majujaya.com\",\r\n    \"password\": \"Pass123!\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create Recruiter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"fullName\": \"Jane Smith\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Recruiter [FORBID]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"fullName\": \"Jane Smith\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"message\": \"Forbidden: You do not have enough permissions\"\r\n}"
+						},
+						{
+							"name": "Create Recruiter [SUCCESS]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"fullName\": \"Jane Smith\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"success\": true,\r\n    \"data\": {\r\n        \"id\": \"db422516-ca68-4360-9d27-741124ebef84\",\r\n        \"companyId\": \"3dbadce8-9c19-42e3-aceb-fa66ef954524\",\r\n        \"email\": \"recruiter@majujayad.com\",\r\n        \"fullName\": \"Jane Smith\",\r\n        \"role\": \"RECRUITER\",\r\n        \"createdAt\": \"2026-01-15T07:54:14.109Z\",\r\n        \"updatedAt\": \"2026-01-15T07:54:14.109Z\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Create Recruiter [REQUIRED]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\r\n    \"success\": false,\r\n    \"errors\": [\r\n        {\r\n            \"type\": \"field\",\r\n            \"msg\": \"Full name is required\",\r\n            \"path\": \"fullName\",\r\n            \"location\": \"body\"\r\n        },\r\n        {\r\n            \"type\": \"field\",\r\n            \"value\": \"recruiter@majujayad.com\",\r\n            \"msg\": \"Email already exists\",\r\n            \"path\": \"email\",\r\n            \"location\": \"body\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get User Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"fullName\": \"Jane Smith\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Detail Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"recruiter@majujaya.com\",\r\n    \"password\": \"Pass123!\",\r\n    \"fullName\": \"Jane Smith\",\r\n    \"role\": \"RECRUITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/e4aec2eb-8ee5-4130-945f-8671c41c3895",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"e4aec2eb-8ee5-4130-945f-8671c41c3895"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Position",
+			"item": [
+				{
+					"name": "Create Position",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Factory Worker\",\r\n    \"location\": \"Jakarta\",\r\n    \"type\": \"FULL_TIME\",\r\n    \"description\": \"Dibutuhkan operator produksi dengan ketelitian tinggi dan bersedia bekerja sistem shift.\",\r\n    \"salary\": \"4-5 juta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/positions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Positions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/positions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Position Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Factory Worker\",\r\n    \"location\": \"Jakarta\",\r\n    \"type\": \"FULL_TIME\",\r\n    \"description\": \"Dibutuhkan operator produksi dengan ketelitian tinggi dan bersedia bekerja sistem shift.\",\r\n    \"salary\": \"4-5 juta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/positions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Position",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Senior Factory Worker\",\r\n    \"location\": \"Jakarta Selatan\",\r\n    \"type\": \"FULL_TIME\",\r\n    \"description\": \"Dibutuhkan operator produksi senior dengan pengalaman 2 tahun.\",\r\n    \"salary\": \"6-7 juta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/positions/69294402-4cd8-4882-85e0-e4454b6c6af7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"positions",
+								"69294402-4cd8-4882-85e0-e4454b6c6af7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Position",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/positions/69294402-4cd8-4882-85e0-e4454b6c6af7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"positions",
+								"69294402-4cd8-4882-85e0-e4454b6c6af7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Applicant Management",
+			"item": [
+				{
+					"name": "Apply for Position",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"positionId\": \"3646e108-9237-4f82-a152-4028407d1959\",\r\n    \"fullName\": \"Ahmad Rizki\",\r\n    \"email\": \"ahmad@email.com\",\r\n    \"phone\": \"08123456789\",\r\n    \"education\": \"SMK\",\r\n    \"experience\": 2,\r\n    \"resumeUrl\": \"https://drive.google.com/file/d/xxx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/applicants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Applicants",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/applicants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Applicant Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/applicants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Applicant Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"INTERVIEW\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/applicants/d306cb21-d049-41c1-b84a-301f24133026/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants",
+								"d306cb21-d049-41c1-b84a-301f24133026",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add/Update Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notes\": \"Kandidat bagus, berpengalaman dan sangat antusias saat screening awal.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/applicants/d306cb21-d049-41c1-b84a-301f24133026/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants",
+								"d306cb21-d049-41c1-b84a-301f24133026",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Applicant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{vault:authorization-secret}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/applicants/d306cb21-d049-41c1-b84a-301f24133026",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"applicants",
+								"d306cb21-d049-41c1-b84a-301f24133026"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
