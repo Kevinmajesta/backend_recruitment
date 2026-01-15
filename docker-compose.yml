@@ -6,17 +6,20 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "3000:3000"
     depends_on:
       - db
     environment:
       ENV: "dev"
       PORT: "8080"
-      POSTGRES_HOST: "db"        
+      DATABASE_URL: "postgresql://recrumsbu:recrumsbu@db:5432/recrumsbu?schema=public"
+      JWT_SECRET: ${JWT_SECRET}
+      POSTGRES_HOST: "db"
       POSTGRES_PORT: "5432"
       POSTGRES_USER: "recrumsbu"
       POSTGRES_PASSWORD: "recrumsbu"
       POSTGRES_DATABASE: "recrumsbu"
+
   db:
     image: postgres:latest
     environment:

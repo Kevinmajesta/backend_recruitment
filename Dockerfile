@@ -1,51 +1,52 @@
 # Tahap pertama: Pembangunan (Build Stage)
 FROM node:20-alpine AS builder
 
-# Set lingkungan kerja
 WORKDIR /app
 
-# Mengcopy package.json dan package-lock.json (untuk caching layer)
 COPY package*.json ./
+# Copy folder prisma agar engine bisa di-generate
+COPY prisma ./prisma/ 
 
-# Menginstall semua dependensi (termasuk devDependencies untuk build/typescript)
 RUN npm install
 
-# Mengcopy seluruh kode sumber
 COPY . .
 
-# Jika kamu menggunakan TypeScript, jalankan perintah build di sini:
-# RUN npm run build
+# Generate Prisma Client di tahap builder
+RUN npx prisma generate
 
 # Tahap kedua: Produksi (Production Stage)
 FROM node:20-alpine
 
-# Instal tzdata untuk dukungan zona waktu
-RUN apk --no-cache add tzdata
+# Instal tzdata dan openssl (Prisma butuh openssl untuk koneksi DB)
+RUN apk --no-cache add tzdata openssl
 
 WORKDIR /app
 
-# Salin package.json dan install hanya dependensi produksi (lebih ringan & aman)
 COPY package*.json ./
+# Install hanya dependensi produksi
 RUN npm install --omit=dev
 
-# Mengcopy hasil dari builder
-# Jika menggunakan TS, ganti '.' dengan folder dist: COPY --from=builder /app/dist ./dist
+# Salin folder prisma (penting untuk migrasi)
+COPY --from=builder /app/prisma ./prisma
+# Salin node_modules yang sudah berisi Prisma Client yang ter-generate
+COPY --from=builder /app/node_modules ./node_modules
+# Salin seluruh kode aplikasi
 COPY --from=builder /app ./ 
 
-# Konfigurasi zona waktu
 ENV TZ=Asia/Jakarta
 RUN cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && echo "Asia/Jakarta" > /etc/timezone
 
-# Membuat direktori /assets/images dan mengatur izin
 RUN mkdir -p /app/assets/images && chmod 777 /app/assets/images
 
-# Menjalankan aplikasi sebagai user non-root (Keamanan tambahan)
-# Node image sudah menyediakan user 'node'
+# Opsional: Jika kamu ingin menjalankan migrasi otomatis saat container menyala
+# Kita buat script startup sederhana
+RUN echo 'npx prisma migrate deploy && node cmd/app/index.js' > /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 RUN chown -R node:node /app
 USER node
 
-# Port yang dibuka
 EXPOSE 8080
 
-# Jalankan aplikasi (sesuaikan dengan script di package.json)
-CMD ["node", "index.js"]
+# Jalankan via entrypoint agar migrasi terpanggil
+CMD ["sh", "-c", "npx prisma migrate deploy && node cmd/app/index.js"]
