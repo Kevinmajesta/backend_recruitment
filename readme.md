@@ -25,7 +25,7 @@ Backend API ini dibangun untuk sistem **Recruitment Management System** dengan f
   - Role-Based Access Control (Admin HR & Applicant)
 
 - **Documentation**  
-  README dan Postman Collection disediakan untuk mempermudah pengujian.
+  README dan Postman Collection
 
 ---
 
@@ -63,7 +63,7 @@ docker-compose up --build
 ---
 
 ## 📂 Struktur Folder
-
+```bash
 .
 ├── cmd/
 │   └── app/
@@ -77,6 +77,7 @@ docker-compose up --build
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md
+```
 
 
 ---
