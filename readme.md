@@ -5,7 +5,7 @@ Backend API ini dibangun untuk sistem **Recruitment Management System** dengan f
 
 ---
 
-## 🎯 Kriteria Penilaian Terpenuhi
+## 🎯 Function
 
 - **Multi-Tenancy**  
   Isolasi data antar perusahaan menggunakan `companyId` pada level database, middleware, dan query.
