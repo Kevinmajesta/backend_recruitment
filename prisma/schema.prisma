@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. Enum Definitions
+enum Role {
+  ADMIN
+  RECRUITER
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+}
+
+enum ApplicantStatus {
+  APPLIED
+  REVIEWED
+  INTERVIEW
+  ACCEPTED
+  REJECTED
+}
+
+// 2. Company Table
+model Company {
+  id        String     @id @default(uuid()) @db.Uuid
+  name      String
+  email     String
+  phone     String
+  address   String
+  users     User[]
+  positions Position[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+// 3. User Table
+model User {
+  id        String     @id @default(uuid()) @db.Uuid
+  companyId String     @db.Uuid
+  company   Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  email     String     @unique
+  password  String
+  fullName  String
+  role      Role
+  positions Position[] // Relasi untuk createdBy
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+// 4. Position Table
+model Position {
+  id          String      @id @default(uuid()) @db.Uuid
+  companyId   String      @db.Uuid
+  company     Company     @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  title       String
+  location    String
+  type        JobType
+  description String      @db.Text
+  salary      String      // Contoh: "4-5 juta"
+  isActive    Boolean     @default(true)
+  createdBy   String      @db.Uuid
+  creator     User        @relation(fields: [createdBy], references: [id])
+  applicants  Applicant[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+// 5. Applicant Table
+model Applicant {
+  id         String          @id @default(uuid()) @db.Uuid
+  positionId String          @db.Uuid
+  position   Position        @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  fullName   String
+  email      String
+  phone      String
+  education  String
+  experience Int
+  resumeUrl  String
+  status     ApplicantStatus @default(APPLIED)
+  notes      String?         @db.Text
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+}
