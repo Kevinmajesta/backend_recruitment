@@ -72,11 +72,10 @@ docker-compose up --build
 ├── middlewares/             # JWT auth & RBAC
 ├── prisma/                  # Schema & migration
 ├── routes/                  # API routing
-├── docs/
-│   └── postman_collection.json
 ├── docker-compose.yml
 ├── Dockerfile
-└── README.md
+├─── README.md
+└── postman_collection.json
 ```
 
 
